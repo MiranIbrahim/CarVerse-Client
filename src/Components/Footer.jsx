@@ -8,7 +8,7 @@ const Footer = () => {
       <div className="max-w-screen-xl px-4 py-16 mx-auto sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 gap-8 lg:grid-cols-3">
           <div className="text-center lg:text-left">
-            <img src={logo} className="mx-auto mb-5 w-3/5 sm:w-auto sm:h-9" alt="logo" />
+            <img src={logo} className="mx-auto mb-5 w-full sm:w-auto sm:h-9" alt="logo" />
             <p className="max-w-xs mx-auto mt-4 text-sm text-gray-600">
               An unveiling automotive excellence. Discover reviews, insights, and guides for car enthusiasts. Your road to automotive passion starts here.
             </p>
