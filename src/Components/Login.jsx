@@ -1,16 +1,55 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import bglogin from "../assets/login-bg.avif";
+import { useContext, useState } from "react";
+import { AuthContext } from "../AuthProvider/AuthProvider";
+import { GoogleAuthProvider } from "firebase/auth";
+import Swal from "sweetalert2";
 
 const Login = () => {
+  const { signIn, googleLogin } = useContext(AuthContext);
+  const googleProvider = new GoogleAuthProvider();
+  const location = useLocation();
+  const navigate = useNavigate();
 
-    const handleLogin = (e) =>{
-        e.preventDefault();
-        const form = e.target;
-        const email = form.email.value;
-        const password = form.password.value;
-        
-        console.log(email, password);
-    }
+  // eslint-disable-next-line no-unused-vars
+  const [regFailed, setRegFailed] = useState("");
+  // eslint-disable-next-line no-unused-vars
+  const [success, setSuccess] = useState("");
+
+  const handleLogin = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    console.log(email, password);
+    setRegFailed("");
+    setSuccess("");
+
+    signIn(email, password)
+      .then((result) => {
+        console.log(result.user);
+        setSuccess("Login Successfully");
+        e.target.reset();
+        Swal.fire("Log in successful", "Press ok to Continue", "success");
+        navigate(location?.state ? location.state : "/");
+      })
+      .catch((error) => {
+        console.log(error);
+        setRegFailed(error.message);
+        Swal.fire("Wrong email or password", "Press ok to try again", "error");
+      });
+  };
+
+  const handleGoogleLogin = () => {
+    googleLogin(googleProvider)
+      .then((result) => {
+        console.log(result.user);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   return (
     <section
       className="bg-transparent h-[85vh] flex "
@@ -21,7 +60,9 @@ const Login = () => {
       }}
     >
       <div className="md:w-1/2 px-8 md:px-16">
-        <h2 className="font-extrabold text-xl text-white mt-5 bg-slate-500 rounded-md text-center p-2">Please Login</h2>
+        <h2 className="font-extrabold text-xl text-white mt-5 bg-slate-500 rounded-md text-center p-2">
+          Please Login
+        </h2>
         <form onSubmit={handleLogin} action="" className="flex flex-col gap-4">
           <input
             className="p-2 mt-8 rounded-xl border"
@@ -50,7 +91,7 @@ const Login = () => {
           <hr className="border-gray-400" />
         </div>
 
-        <button className="bg-white border py-2 w-full rounded-xl mt-5 flex justify-center items-center text-sm hover:scale-105 duration-300 text-[#002D74]">
+        <button onClick={handleGoogleLogin} className="bg-white border py-2 w-full rounded-xl mt-5 flex justify-center items-center text-sm hover:scale-105 duration-300 text-[#002D74]">
           <svg
             className="mr-3"
             xmlns="http://www.w3.org/2000/svg"

@@ -1,35 +1,52 @@
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import logo from "../assets/NavLogo2.png";
 import { FiMenu } from "react-icons/fi";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
+import { AuthContext } from "../AuthProvider/AuthProvider";
 
 const Navbar = () => {
+  const { user, logOut } = useContext(AuthContext);
   const [isOpen, setIsOpen] = useState(false);
+
+  const handleLogOut = () => {
+    logOut()
+      .then((result) => {
+        console.log(result.user);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
 
-  const [theme, setTheme] = useState(localStorage.getItem('theme') ? localStorage.getItem('theme') : 'light');
-  useEffect(()=>{
-    localStorage.setItem('theme',theme);
-    const localTheme = localStorage.getItem('theme');
-    document.querySelector('html').setAttribute('data-theme',localTheme);
-  },[theme]);
+  const [theme, setTheme] = useState(
+    localStorage.getItem("theme") ? localStorage.getItem("theme") : "light"
+  );
+  useEffect(() => {
+    localStorage.setItem("theme", theme);
+    const localTheme = localStorage.getItem("theme");
+    document.querySelector("html").setAttribute("data-theme", localTheme);
+  }, [theme]);
 
-  const handleToggle = (e) =>{
-    if(e.target.checked){
-      setTheme('dark');
+  const handleToggle = (e) => {
+    if (e.target.checked) {
+      setTheme("dark");
+    } else {
+      setTheme("light");
     }
-    else{
-      setTheme('light');
-    }
-  }
+  };
   return (
     <nav className="bg-transparent border-gray-200 dark:bg-gray-900">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
         <img src={logo} className="mr-3 w-56 " alt="" />
-        <span className= {`self-center text-2xl font-semibold whitespace-nowrap hidden md:block ${theme==='dark'? "text-white" : "text-black"} `}>
+        <span
+          className={`self-center text-2xl font-semibold whitespace-nowrap hidden md:block ${
+            theme === "dark" ? "text-white" : "text-black"
+          } `}
+        >
           CarVerse
         </span>
 
@@ -45,7 +62,7 @@ const Navbar = () => {
           className={`md:flex w-full md:w-auto ${isOpen ? "block" : "hidden"}`}
           id="navbar-default"
         >
-          <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+          <ul className="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-500 md:flex-row md:space-x-8 md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700 items-center">
             <li className="pl-3">
               <NavLink
                 to="/"
@@ -71,26 +88,59 @@ const Navbar = () => {
               </NavLink>
             </li>
             <li className="pl-3">
-              <NavLink
-                to="/login"
-                className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
-              >
-                Log in/Register
-              </NavLink>
+              {user ? (
+                <>
+                  <div className="dropdown dropdown-end">
+                    <label
+                      tabIndex={0}
+                      className="btn btn-ghost btn-circle avatar"
+                    >
+                      <div className="w-8 h-8 rounded-full">
+                        <img src={user?.photoURL} alt="" />
+                      </div>
+                    </label>
+                    <ul
+                      tabIndex={0}
+                      className="mt-3 z-[1] p-2 shadow dropdown-content bg-base-100 rounded-box w-32"
+                    >
+                      <li>
+                        <p className="text-center">{user.displayName}</p>
+                      </li>
+                      <li>
+                        <NavLink
+                          onClick={handleLogOut}
+                          className="block py-2 pl-3 pr-4 text-red-500 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent text-center"
+                        >
+                          LogOut
+                        </NavLink>
+                      </li>
+                    </ul>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <Link
+                    to="/login"
+                    className="block py-2 pl-3 pr-4 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent"
+                  >
+                    Log in/Register
+                  </Link>
+                </>
+              )}
             </li>
             <li className="pl-3">
               <label className="swap swap-rotate pr-3">
                 {/* this hidden checkbox controls the state */}
-                <input 
-                type="checkbox" 
-                onChange={handleToggle} 
-                className="hidden"
-                checked= {theme == 'light' ? false : true }
+                <input
+                  type="checkbox"
+                  onChange={handleToggle}
+                  className="hidden"
+                  checked={theme == "light" ? false : true}
                 />
 
                 {/* sun icon */}
                 <svg
-                  className="swap-on fill-current w-5 h-5 mt-1 text-blue-700 ml-3"
+                  className="swap-on fill-current w-8 h-8 mt-1 text-blue-700 ml-3"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
                 >
@@ -99,7 +149,7 @@ const Navbar = () => {
 
                 {/* moon icon */}
                 <svg
-                  className="swap-off fill-current w-5 h-5 mt-1 text-blue-700 ml-3"
+                  className="swap-off fill-current w-8 h-8 mt-1 text-blue-700 ml-3"
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"
                 >

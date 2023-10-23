@@ -4,6 +4,9 @@ import Home from "./Home";
 import Login from "./Login";
 import Register from "./Register";
 import Notfound from "./Notfound";
+import PrivateRoute from "./PrivateRoute";
+import AddProduct from "./AddProduct";
+import MyCart from "./MyCart";
 
 
 const router = createBrowserRouter([
@@ -23,6 +26,18 @@ const router = createBrowserRouter([
         {
           path: "/register",
           element: <Register></Register>,
+        },
+        {
+          path: "/products",
+          element: <PrivateRoute>
+            <AddProduct></AddProduct>
+          </PrivateRoute>,
+        },
+        {
+          path: "/cart",
+          element: <PrivateRoute>
+          <MyCart></MyCart>
+        </PrivateRoute>,
         },
         {
           path: "*",
