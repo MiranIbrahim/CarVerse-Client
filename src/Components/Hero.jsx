@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { BsChevronCompactLeft, BsChevronCompactRight } from "react-icons/bs";
 import { RxDotFilled } from "react-icons/rx";
 
@@ -27,7 +27,16 @@ const slides = [
 
 
 
+
   const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      nextSlide();
+    }, 3000); // Change slide every 3 seconds (adjust as needed)
+
+    return () => clearInterval(interval);
+  }, [currentIndex]);
 
   const prevSlide = () => {
     const isFirstSlide = currentIndex === 0;
@@ -44,6 +53,11 @@ const slides = [
   const goToSlide = (slideIndex) => {
     setCurrentIndex(slideIndex);
   };
+
+
+
+
+
 
   return (
     <div className="max-w-[1400px] h-[95vh] w-full m-auto pb-10 relative group">
@@ -75,3 +89,15 @@ const slides = [
 };
 
 export default Hero;
+
+
+
+
+
+
+
+
+
+
+
+

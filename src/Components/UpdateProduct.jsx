@@ -1,8 +1,14 @@
+import { useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
-import addproductbg from "../assets/addproductbg.png";
+import updatebg from "../assets/updatebg.jpg";
 
-const AddProducts = () => {
-  const handleAddProduct = (event) => {
+const UpdateProduct = () => {
+  const Product = useLoaderData();
+  const { _id, photo, name, brand, type, price, rating, description } = Product;
+
+  console.log(Product);
+
+  const handleUpdateProduct = (event) => {
     event.preventDefault();
 
     const form = event.target;
@@ -15,7 +21,8 @@ const AddProducts = () => {
     const rating = form.rating.value;
     const description = form.description.value;
 
-    const newProduct = {
+    const updatedProduct = {
+      _id,
       photo,
       name,
       brand,
@@ -25,48 +32,47 @@ const AddProducts = () => {
       description,
     };
 
-    console.log(newProduct);
+    console.log(updatedProduct);
 
-    // sending data to server
-
-    fetch("http://localhost:5000/products", {
-      method: "POST",
+    // send data to the server
+    fetch(`http://localhost:5000/products/${_id}`, {
+      method: "PUT",
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify(newProduct),
+      body: JSON.stringify(updatedProduct),
     })
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        if (data.insertedId) {
+        if (data.modifiedCount > 0) {
           Swal.fire({
             title: "Success!",
-            text: "New product added",
+            text: "Product Updated Successfully",
             icon: "success",
-            confirmButtonText: "OK",
+            confirmButtonText: "Ok",
           });
-          form.reset();
         }
       });
   };
   return (
     <section
-    className="bg-transparent h-[87vh] flex"
+      className="bg-transparent h-[87vh] flex items-center justify-center"
       style={{
-        backgroundImage: `url(${addproductbg})`,
+        backgroundImage: `url(${updatebg})`,
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
-      }}>
-      <div className="md:ml-8 px-4 md:px-8 bg-gradient-to-r from-blue-200 via-blue-300 to-blue-200 rounded-lg shadow-lg p-6 max-h-[85vh] my-auto">
-        <h1 className="text-3xl font-bold mb-4 text-center text-gray-600">
-          Add a Product
+      }}
+    >
+      <div className="bg-gradient-to-r from-red-300 via-blue-100 to-blue-400 rounded-lg shadow-lg p-6 max-h-[85vh]">
+        <h1 className="text-3xl font-bold mb-4 text-center text-gray-600 mx-auto">
+          Update Product Info
         </h1>
         <form
           action="#"
           method="post"
           className="grid grid-cols-2 gap-4"
-          onSubmit={handleAddProduct}
+          onSubmit={handleUpdateProduct}
         >
           <div>
             <label
@@ -80,6 +86,7 @@ const AddProducts = () => {
               name="photo"
               id="photo"
               className="w-full bg-blue-100 text-gray-900 border p-2 rounded focus:outline-none focus:ring focus:border-blue-300"
+              defaultValue={photo}
             />
           </div>
           <div>
@@ -94,6 +101,7 @@ const AddProducts = () => {
               name="name"
               id="name"
               className="w-full bg-blue-100 text-gray-900 border p-2 rounded focus:outline-none focus:ring focus:border-blue-300"
+              defaultValue={name}
             />
           </div>
           <div>
@@ -108,6 +116,7 @@ const AddProducts = () => {
               name="brand"
               id="brand"
               className="w-full bg-blue-100 text-gray-900 border p-2 rounded focus:outline-none focus:ring focus:border-blue-300"
+              defaultValue={brand}
             />
           </div>
           <div>
@@ -121,6 +130,7 @@ const AddProducts = () => {
               name="type"
               id="type"
               className="w-full bg-blue-100 text-gray-900 border p-2 rounded focus:outline-none focus:ring focus:border-blue-300"
+              defaultValue={type}
             >
               <option value="SUV">SUV</option>
               <option value="SEDAN">SEDAN</option>
@@ -139,6 +149,7 @@ const AddProducts = () => {
               name="price"
               id="price"
               className="w-full bg-blue-100 text-gray-900 border p-2 rounded focus:outline-none focus:ring focus:border-blue-300"
+              defaultValue={price}
             />
           </div>
           <div>
@@ -155,6 +166,7 @@ const AddProducts = () => {
               min="1"
               max="5"
               className="w-full bg-blue-100 text-gray-900 border p-2 rounded focus:outline-none focus:ring focus:border-blue-300"
+              defaultValue={rating}
             />
           </div>
           <div className="col-span-2">
@@ -168,6 +180,7 @@ const AddProducts = () => {
               name="description"
               id="description"
               className="w-full bg-blue-100 text-gray-900 border p-2 rounded focus:outline-none focus:ring focus:border-blue-300"
+              defaultValue={description}
             ></textarea>
           </div>
 
@@ -176,7 +189,7 @@ const AddProducts = () => {
               type="submit"
               className="px-4 py-2 bg-blue-600 text-gray-600 rounded hover:bg-blue-700 focus:outline-none text-white"
             >
-              Add Product
+              Update
             </button>
           </div>
         </form>
@@ -185,4 +198,4 @@ const AddProducts = () => {
   );
 };
 
-export default AddProducts;
+export default UpdateProduct;

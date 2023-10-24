@@ -8,45 +8,81 @@ import PrivateRoute from "./PrivateRoute";
 
 import MyCart from "./MyCart";
 import AddProducts from "./AddProducts";
-
+import Brand from "./Brand";
+import ProductDetails from "./ProductDetails";
+import UpdateProduct from "./UpdateProduct";
 
 const router = createBrowserRouter([
-    {
-      path: "/",
-      element: <Roots></Roots>,
-      children: [
-        {
-          path: "/",
-          element: <Home></Home>,
-          loader: () => fetch("/services.json"),
-        },
-        {
-          path: "/login",
-          element: <Login></Login>,
-        },
-        {
-          path: "/register",
-          element: <Register></Register>,
-        },
-        {
-          path: "/addproducts",
-          element: <PrivateRoute>
+  {
+    path: "/",
+    element: <Roots></Roots>,
+    children: [
+      {
+        path: "/",
+        element: <Home></Home>,
+      },
+      {
+        path: "/login",
+        element: <Login></Login>,
+      },
+      {
+        path: "/register",
+        element: <Register></Register>,
+      },
+      {
+        path: "/addProducts",
+        element: (
+          <PrivateRoute>
             <AddProducts></AddProducts>
-          </PrivateRoute>,
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/myCart",
+        element: (
+          <PrivateRoute>
+            <MyCart></MyCart>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "/brand/:id",
+        element: (
+          
+            <Brand></Brand>
+          
+        ),
+        loader: () => fetch("/brand.json"),
+      },
+      {
+        path: "/productDetails/:id",
+        element: (
+          <PrivateRoute>
+            <ProductDetails />
+          </PrivateRoute>
+        ),
+        loader: async ({ params }) => {
+          const response = await fetch(`http://localhost:5000/products/${params.id}`);
+          const data = await response.json();
+          return data;
         },
-        {
-          path: "/mycart",
-          element: <PrivateRoute>
-          <MyCart></MyCart>
-        </PrivateRoute>,
-        },
-        {
-          path: "*",
-          element: <Notfound></Notfound> ,
-        }
-      ],
-    },
-  ]);
-  
-  export default router;
-  
+      },      
+      {
+        path: "/updateProduct/:id",
+        element: (
+          <PrivateRoute>
+            <UpdateProduct></UpdateProduct>
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/products/${params.id}`),
+      },
+      {
+        path: "*",
+        element: <Notfound></Notfound>,
+      },
+    ],
+  },
+]);
+
+export default router;
