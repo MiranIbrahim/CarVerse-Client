@@ -1,0 +1,51 @@
+[
+    {
+      "brand_id": 1,
+      "brand_name": "Toyota",
+      "brand_logo": "https://cdn.wallpapersafari.com/45/19/ir48AQ.jpg",
+      "ad_1": "https://s3.amazonaws.com/media.mediapost.com/dam/cropped/2017/06/12/screen-shot-2017-06-12-at-14638-am_RIYOL0n.png",
+      "ad_2": "https://images-cdn.ispot.tv/ad/IleW/default-large.jpg",
+      "ad_3": "https://i.pinimg.com/originals/87/8d/56/878d56c7f71299fb80d8f2d9df26ab33.png"
+    },
+    {
+      "brand_id": 2,
+      "brand_name": "Ford",
+      "brand_logo": "https://e0.pxfuel.com/wallpapers/643/253/desktop-wallpaper-blue-oval-oval-blue-ford-logo.jpg",
+      "ad_1": "https://motoringwebuploads.s3.ap-south-1.amazonaws.com/wp-content/uploads/2017/05/11194141/Ford-India-safety-e1494575573405.jpg",
+      "ad_2": "https://i.pinimg.com/originals/5c/e2/0a/5ce20a934aaf658cd7944ff346f57caa.jpg",
+      "ad_3": "https://i.pinimg.com/originals/f4/05/21/f40521afdc448f4c5e1a867cb4587325.jpg"
+    },
+    {
+      "brand_id": 3,
+      "brand_name": "BMW",
+      "brand_logo": "https://static.vecteezy.com/system/resources/previews/020/500/078/original/bmw-brand-logo-car-symbol-white-and-blue-design-germany-automobile-illustration-with-black-background-free-vector.jpg",
+      "ad_1": "",
+      "ad_2": "",
+      "ad_3": ""
+    },
+    {
+      "brand_id": 4,
+      "brand_name": "Honda",
+      "brand_logo": "https://i.pinimg.com/originals/7f/3a/fb/7f3afb88712a75ef397ae98968a72a1c.jpg",
+      "ad_1": "https://s3-prod.autonews.com/s3fs-public/RETAIL03_181009832_AR_-1_EDYOKGJHDEAB.jpg",
+      "ad_2": "https://i.pinimg.com/originals/7e/9a/ba/7e9aba0b48ebdd11eabf28f0d4467901.png",
+      "ad_3": "https://i.ytimg.com/vi/J7kzqLjVE38/maxresdefault.jpg"
+    },
+    {
+      "brand_id": 5,
+      "brand_name": "Hyundai",
+      "brand_logo": "https://static.vecteezy.com/system/resources/previews/020/499/812/original/hyundai-logo-brand-symbol-with-name-white-design-south-korean-car-automobile-illustration-with-black-background-free-vector.jpg",
+      "ad_1": "https://i.ytimg.com/vi/9ypxRGSrS-k/maxresdefault.jpg",
+      "ad_2": "https://i.ytimg.com/vi/1omUpOFqSIw/maxresdefault.jpg",
+      "ad_3": "https://i.ytimg.com/vi/r1caoAapedU/sddefault.jpg"
+    },
+    {
+      "brand_id": 6,
+      "brand_name": "Nissan",
+      "brand_logo": "https://cdn.wallpapersafari.com/35/25/XlvKeo.png",
+      "ad_1": "https://newspaperads.ads2publish.com/wp-content/uploads/2021/02/nissan-kicks-powerful-suv-ad-times-of-india-delhi-17-02-2021.jpg",
+      "ad_2": "https://www.exchange4media.com/news-photo/123002-nissanmain.jpg",
+      "ad_3": "https://i.pinimg.com/originals/10/24/a9/1024a9dd5b39ffe7af52fa45ac26e4c9.jpg"
+    }
+  ]
+  

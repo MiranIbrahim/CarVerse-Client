@@ -25,6 +25,17 @@ const Register = () => {
 
     console.log(name, photoURL, email, password);
 
+    if (password.length < 6) {
+      setRegFailed("password should be 6 character");
+      return;
+    } else if (!/[A-Z]/.test(password)) {
+      setRegFailed("Atleast one uppercase needed");
+      return;
+    } else if (!/[!@#$%^&*(),.?":{}|<>]/.test(password)){
+      setRegFailed("Atleast one special character needed");
+      return;
+    }
+
     createUser(email, password)
       .then((result) => {
         console.log(result.user);
@@ -98,7 +109,7 @@ const Register = () => {
               required
             />
             {regFailed && (
-              <p className="text-red-500 bg-lime-400 bg-opacity-4 font-bold text-md text-center mt-2 rounded-md w-2/3 mx-auto">
+              <p className="text-red-700 bg-lime-300 bg-opacity-4 font-bold text-md text-center mt-2 rounded-md w-2/3 mx-auto">
                 {regFailed}
               </p>
             )}
