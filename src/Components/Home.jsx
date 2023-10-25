@@ -1,6 +1,8 @@
+import AfterSaleService from "./AfterSaleService";
 import Brands from "./Brands";
 import Hero from "./Hero";
 import TopRatedProducts from "./TopRatedProducts";
+
 
 
 const Home = () => {
@@ -9,6 +11,7 @@ const Home = () => {
             <Hero></Hero>
             <Brands></Brands>
             <TopRatedProducts></TopRatedProducts>
+            <AfterSaleService></AfterSaleService>
         </div>
     );
 };

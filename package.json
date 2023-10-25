@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "aos": "^2.3.4",
     "firebase": "^10.5.0",
     "flowbite": "^1.8.1",
     "flowbite-react": "^0.6.4",
@@ -20,7 +21,7 @@
     "react-icons": "^4.11.0",
     "react-router-dom": "^6.17.0",
     "sort-by": "^0.0.2",
-    "sweetalert2": "^11.7.32"
+    "sweetalert2": "^11.6.13"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",

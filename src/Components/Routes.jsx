@@ -11,7 +11,6 @@ import AddProducts from "./AddProducts";
 import Brand from "./Brand";
 import ProductDetails from "./ProductDetails";
 import UpdateProduct from "./UpdateProduct";
-import TopRatedProducts from "./TopRatedProducts";
 
 const router = createBrowserRouter([
   {
@@ -45,7 +44,7 @@ const router = createBrowserRouter([
             <MyCart></MyCart>
           </PrivateRoute>
         ),
-        loader: () => fetch("http://localhost:5000/cart"),
+        loader: () => fetch("https://car-verse-server-llp503sfu-miran-ibrahims-projects.vercel.app/cart"),
       },
       {
         path: "/brand/:id",
@@ -61,7 +60,7 @@ const router = createBrowserRouter([
         ),
         loader: async ({ params }) => {
           const response = await fetch(
-            `http://localhost:5000/products/${params.id}`
+            `https://car-verse-server-llp503sfu-miran-ibrahims-projects.vercel.app/products/${params.id}`
           );
           const data = await response.json();
           return data;
@@ -75,7 +74,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/products/${params.id}`),
+          fetch(`https://car-verse-server-llp503sfu-miran-ibrahims-projects.vercel.app/products/${params.id}`),
       },
       {
         path: "*",

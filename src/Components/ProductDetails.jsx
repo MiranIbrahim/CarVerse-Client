@@ -30,13 +30,16 @@ const ProductDetails = () => {
     };
     console.log(cartItem);
 
-    fetch("http://localhost:5000/cart", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(cartItem),
-    })
+    fetch(
+      "https://car-verse-server-llp503sfu-miran-ibrahims-projects.vercel.app/cart",
+      {
+        method: "POST",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(cartItem),
+      }
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -60,57 +63,59 @@ const ProductDetails = () => {
 
   return (
     <section
-      className="bg-transparent h-[100Vh] flex items-center justify-center"
+      className="bg-transparent sm:h-[125vh] md:h-[115vh] lg:h-[110Vh] flex items-center justify-center"
       style={{
         backgroundImage: `url(${url})`,
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
       }}
     >
-      <div className="card w-1/3 card-compact bg-base-100 border bg-transparent h-[95vh]">
+      <div className="card w-full md:w-1/2 lg:w-1/3 card-compact bg-base-100 border bg-transparent border-10 md:h-[100vh] lg:h-[105vh]">
         <div className="card-body">
-          <table className="min-w-full border border-collapse border-gray-300">
-            <tbody>
-              <tr className="bg-blue-100 text-black">
-                <td className="py-2 px-4">
-                  <strong>Name</strong>
-                </td>
-                <td className="py-2 px-4">{name}</td>
-              </tr>
-              <tr className="bg-blue-500 text-white">
-                <td className="py-2 px-4">
-                  <strong>Brand</strong>
-                </td>
-                <td className="py-2 px-4">{brand}</td>
-              </tr>
-              <tr className="bg-blue-100 text-black">
-                <td className="py-2 px-4">
-                  <strong>Type</strong>
-                </td>
-                <td className="py-2 px-4">{type}</td>
-              </tr>
-              <tr className="bg-blue-500 text-white">
-                <td className="py-2 px-4">
-                  <strong>Price</strong>
-                </td>
-                <td className="py-2 px-4">{price}</td>
-              </tr>
-              <tr className="bg-blue-100 text-black">
-                <td className="py-2 px-4">
-                  <strong>Rating</strong>
-                </td>
-                <td className="py-2 px-4 flex items-center">
-                  {starArray} ({rating})
-                </td>
-              </tr>
-              <tr className="bg-blue-500 text-white">
-                <td className="py-2 px-4">
-                  <strong>Description</strong>
-                </td>
-                <td className="py-2 px-4 flex flex-wrap">{description}</td>
-              </tr>
-            </tbody>
-          </table>
+          <div className="">
+            <table className="min-w-full border border-collapse border-gray-300 ">
+              <tbody>
+                <tr className="bg-blue-100 text-black">
+                  <td className="py-2 px-4">
+                    <strong>Name</strong>
+                  </td>
+                  <td className="py-2 px-4">{name}</td>
+                </tr>
+                <tr className="bg-blue-500 text-white">
+                  <td className="py-2 px-4">
+                    <strong>Brand</strong>
+                  </td>
+                  <td className="py-2 px-4">{brand}</td>
+                </tr>
+                <tr className="bg-blue-100 text-black">
+                  <td className="py-2 px-4">
+                    <strong>Type</strong>
+                  </td>
+                  <td className="py-2 px-4">{type}</td>
+                </tr>
+                <tr className="bg-blue-500 text-white">
+                  <td className="py-2 px-4">
+                    <strong>Price</strong>
+                  </td>
+                  <td className="py-2 px-4">{price}</td>
+                </tr>
+                <tr className="bg-blue-100 text-black">
+                  <td className="py-2 px-4">
+                    <strong>Rating</strong>
+                  </td>
+                  <td className="py-2 px-4 flex items-center">
+                    {starArray} ({rating})
+                  </td>
+                </tr>
+                <tr className="bg-blue-500 text-white">
+                  <td className="py-2 px-4">
+                    <strong>Description</strong>
+                  </td>
+                  <td className="py-2 px-4 flex flex-wrap">{description}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
           <button
             onClick={() =>
               addToCartHandler(_id, photo, name, brand, type, price)
@@ -121,7 +126,7 @@ const ProductDetails = () => {
           </button>
         </div>
         <figure>
-          <img src={photo} alt="" />
+          <img src={photo} alt="" className="w-full" />
         </figure>
       </div>
     </section>
