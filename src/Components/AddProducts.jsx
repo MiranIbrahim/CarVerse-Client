@@ -52,12 +52,13 @@ const AddProducts = () => {
   };
   return (
     <section
-    className="bg-transparent h-[87vh] flex"
+      className="bg-transparent h-[87vh] flex"
       style={{
         backgroundImage: `url(${addproductbg})`,
         backgroundSize: "cover",
         backgroundRepeat: "no-repeat",
-      }}>
+      }}
+    >
       <div className="md:ml-8 px-4 md:px-8 bg-gradient-to-r from-blue-200 via-blue-300 to-blue-200 rounded-lg shadow-lg p-6 max-h-[85vh] my-auto">
         <h1 className="text-3xl font-bold mb-4 text-center text-gray-600">
           Add a Product
