@@ -11,6 +11,7 @@ import AddProducts from "./AddProducts";
 import Brand from "./Brand";
 import ProductDetails from "./ProductDetails";
 import UpdateProduct from "./UpdateProduct";
+import TopRatedProducts from "./TopRatedProducts";
 
 const router = createBrowserRouter([
   {

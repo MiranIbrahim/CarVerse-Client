@@ -13,14 +13,15 @@ const ProductCard = ({ brandProduct }) => {
 
   return (
     <div className="card max-w-96 bg-base-100 border">
+      <p className="text-center text-lg bg-purple-400 text-black w-28 mx-auto rounded uppercase mt-2">{brand}</p>
       <figure>
         <img src={photo} alt="" />
       </figure>
       <div className="card-body">
         <h2 className="card-title text-2xl">{name}</h2>
-        <p className="text-xl font-light">Type: {type}</p>
-        <p className="text-lg font-light">Price: {price} BDT</p>
-        <p className="text-lg font-light flex items-center gap-1">
+        <p className="text-xl font-medium">Type: {type}</p>
+        <p className="text-lg font-medium">Price: {price} BDT</p>
+        <p className="text-lg font-medium flex items-center gap-1">
           Rating: {starArray} ({rating})
         </p>
         <div className="card-actions justify-end">

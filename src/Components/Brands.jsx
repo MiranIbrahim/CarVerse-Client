@@ -26,7 +26,7 @@ const Brands = () => {
                 <img src={brand.brand_logo} alt="" />
               </figure>
               <div className="">
-                <h2 className="text-xl text-center font-bold p-3">
+                <h2 className="text-xl text-center font-bold p-3 uppercase">
                   {brand.brand_name}
                 </h2>
               </div>
