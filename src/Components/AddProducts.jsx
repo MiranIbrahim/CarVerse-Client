@@ -1,5 +1,6 @@
 import Swal from "sweetalert2";
 import addproductbg from "../assets/addproductbg.png";
+import { Link } from "react-router-dom";
 
 const AddProducts = () => {
   const handleAddProduct = (event) => {
@@ -172,13 +173,16 @@ const AddProducts = () => {
             ></textarea>
           </div>
 
-          <div className="col-span-2 flex justify-center">
+          <div className="col-span-2 flex justify-around">
             <button
               type="submit"
-              className="px-4 py-2 bg-blue-600 text-gray-600 rounded hover:bg-blue-700 focus:outline-none text-white"
+              className="px-4 py-2 bg-blue-600 text-gray-600 rounded hover:bg-blue-700 focus:outline-none text-white w-1/3"
             >
               Add Product
             </button>
+            <Link to='/' className="btn btn-primary w-1/3">
+              <button >Return</button>
+            </Link>
           </div>
         </form>
       </div>

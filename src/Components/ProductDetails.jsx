@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { FaStar } from "react-icons/fa";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import { AuthContext } from "../AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
 
@@ -116,14 +116,19 @@ const ProductDetails = () => {
               </tbody>
             </table>
           </div>
-          <button
-            onClick={() =>
-              addToCartHandler(_id, photo, name, brand, type, price)
-            }
-            className="btn btn-active btn-secondary text-white"
-          >
-            Add to Cart
-          </button>
+          <div className="flex items-center justify-around gap-2">
+            <button
+              onClick={() =>
+                addToCartHandler(_id, photo, name, brand, type, price)
+              }
+              className="btn btn-active btn-secondary text-white w-1/3"
+            >
+              Add to Cart
+            </button>
+            <Link to='/' className="btn btn-primary w-1/3">
+              <button >Return</button>
+            </Link>
+          </div>
         </div>
         <figure>
           <img src={photo} alt="" className="w-full" />

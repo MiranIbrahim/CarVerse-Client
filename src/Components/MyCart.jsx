@@ -1,6 +1,6 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../AuthProvider/AuthProvider";
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import Swal from "sweetalert2";
 
 const MyCart = () => {
@@ -95,6 +95,11 @@ const MyCart = () => {
           </h2>
         </div>
       )}
+      <div className="flex justify-center m-10">
+        <Link to="/" className="btn btn-primary">
+          <button>Return</button>
+        </Link>
+      </div>
     </div>
   );
 };
