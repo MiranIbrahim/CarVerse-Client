@@ -26,7 +26,7 @@ const MyCart = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         fetch(
-          `https://car-verse-server-llp503sfu-miran-ibrahims-projects.vercel.app/cart/${_id}`,
+          `http://localhost:5000/cart/${_id}`,
           {
             method: "DELETE",
           }

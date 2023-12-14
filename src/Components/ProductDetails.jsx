@@ -3,6 +3,7 @@ import { FaStar } from "react-icons/fa";
 import { Link, useLoaderData } from "react-router-dom";
 import { AuthContext } from "../AuthProvider/AuthProvider";
 import Swal from "sweetalert2";
+import { FacebookShareButton, FacebookIcon } from "react-share";
 
 const ProductDetails = () => {
   const Product = useLoaderData();
@@ -30,16 +31,13 @@ const ProductDetails = () => {
     };
     console.log(cartItem);
 
-    fetch(
-      "https://car-verse-server-llp503sfu-miran-ibrahims-projects.vercel.app/cart",
-      {
-        method: "POST",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(cartItem),
-      }
-    )
+    fetch("http://localhost:5000/cart", {
+      method: "POST",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(cartItem),
+    })
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -52,13 +50,6 @@ const ProductDetails = () => {
           });
         }
       });
-
-    // Swal.fire({
-    //   title: "Success!",
-    //   text: "Product Updated Successfully",
-    //   icon: "success",
-    //   confirmButtonText: "Ok",
-    // });
   };
 
   return (
@@ -125,9 +116,16 @@ const ProductDetails = () => {
             >
               Add to Cart
             </button>
-            <Link to='/' className="btn btn-primary w-1/3">
-              <button >Return</button>
+            <Link to="/" className="btn btn-primary w-1/3">
+              <button>Return</button>
             </Link>
+            <FacebookShareButton
+              url={`https://carverse-f390c.web.app/productDetails/${_id}`}
+              quote={`Share ${name} to facebook`}
+              hashtag="#CarVerse"
+            >
+              <FacebookIcon size={32}   />
+            </FacebookShareButton>
           </div>
         </div>
         <figure>
@@ -139,24 +137,3 @@ const ProductDetails = () => {
 };
 
 export default ProductDetails;
-
-// const Product = useLoaderData();
-//   const { _id, photo, name, brand, type, price, rating, description } = Product;
-//   console.log(Product);
-//   return (
-// <div className="card card-compact w-96 bg-base-100 shadow-xl">
-//   <figure>
-//     <img
-//       src={photo}
-//       alt=""
-//     />
-//   </figure>
-//   <div className="card-body">
-//     <h2 className="card-title">{name}</h2>
-//     <p>If a dog chews shoes whose shoes does he choose?</p>
-//     <div className="card-actions justify-end">
-//       <button className="btn btn-primary">Buy Now</button>
-//     </div>
-//   </div>
-// </div>
-//   );

@@ -4,7 +4,7 @@ import ProductCard from "./ProductCard";
 const TopRatedProducts = () => {
   const [products, setProducts] = useState([]);
   useEffect(() => {
-    fetch("https://car-verse-server-llp503sfu-miran-ibrahims-projects.vercel.app/products")
+    fetch("http://localhost:5000/products")
       .then((res) => res.json())
       .then((data) => setProducts(data));
   }, []);

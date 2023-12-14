@@ -35,7 +35,7 @@ const UpdateProduct = () => {
     console.log(updatedProduct);
 
     // send data to the server
-    fetch(`https://car-verse-server-llp503sfu-miran-ibrahims-projects.vercel.app/products/${_id}`, {
+    fetch(`http://localhost:5000/products/${_id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

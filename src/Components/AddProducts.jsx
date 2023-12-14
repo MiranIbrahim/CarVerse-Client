@@ -30,7 +30,7 @@ const AddProducts = () => {
 
     // sending data to server
 
-    fetch("https://car-verse-server-llp503sfu-miran-ibrahims-projects.vercel.app/products", {
+    fetch("http://localhost:5000/products", {
       method: "POST",
       headers: {
         "content-type": "application/json",
