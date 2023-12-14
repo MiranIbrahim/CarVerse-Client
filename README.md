@@ -16,4 +16,4 @@ server side github repo : https://github.com/programming-hero-web-course-4/b8a10
 
 
 client side live link : https://carverse-f390c.web.app/
-server side live link : http://localhost:5000
+server side live link : https://car-verse-server.vercel.app

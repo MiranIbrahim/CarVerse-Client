@@ -31,7 +31,7 @@ const ProductDetails = () => {
     };
     console.log(cartItem);
 
-    fetch("http://localhost:5000/cart", {
+    fetch("https://car-verse-server.vercel.app/cart", {
       method: "POST",
       headers: {
         "content-type": "application/json",

@@ -30,7 +30,7 @@ const AddProducts = () => {
 
     // sending data to server
 
-    fetch("http://localhost:5000/products", {
+    fetch("https://car-verse-server.vercel.app/products", {
       method: "POST",
       headers: {
         "content-type": "application/json",

@@ -33,7 +33,7 @@ const router = createBrowserRouter([
       {
         path: "/products",
         element: <AllProducts></AllProducts> ,
-        loader: () => fetch('http://localhost:5000/products')
+        loader: () => fetch('https://car-verse-server.vercel.app/products')
       },
       {
         path: "/addProducts",
@@ -50,7 +50,7 @@ const router = createBrowserRouter([
             <MyCart></MyCart>
           </PrivateRoute>
         ),
-        loader: () => fetch("http://localhost:5000/cart"),
+        loader: () => fetch("https://car-verse-server.vercel.app/cart"),
       },
       {
         path: "/brand/:id",
@@ -66,7 +66,7 @@ const router = createBrowserRouter([
         ),
         loader: async ({ params }) => {
           const response = await fetch(
-            `http://localhost:5000/products/${params.id}`
+            `https://car-verse-server.vercel.app/products/${params.id}`
           );
           const data = await response.json();
           return data;
@@ -80,7 +80,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/products/${params.id}`),
+          fetch(`https://car-verse-server.vercel.app/products/${params.id}`),
       },
       {
         path: "*",

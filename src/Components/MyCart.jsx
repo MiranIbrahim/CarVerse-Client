@@ -26,7 +26,7 @@ const MyCart = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         fetch(
-          `http://localhost:5000/cart/${_id}`,
+          `https://car-verse-server.vercel.app/cart/${_id}`,
           {
             method: "DELETE",
           }
